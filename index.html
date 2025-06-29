@@ -80,9 +80,45 @@
                 transform: translateX(-50%);
             }
         }
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #d1fae5;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.75s ease, visibility 0.75s ease;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .spinner {
+            border: 6px solid rgba(236, 72, 153, 0.2); /* Borda rosa claro */
+            border-top-color: #ec4899; /* Rosa mais forte */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body class="text-gray-700">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
 
     <!-- Header -->
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
@@ -223,6 +259,7 @@
  		];
         
         // ========== ELEMENTOS DO DOM ==========
+        const preloader = document.getElementById('preloader');
         const productList = document.getElementById('product-list');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -317,6 +354,11 @@
             if (e.target.classList.contains('mobile-menu-link')) {
                  mobileMenu.classList.add('hidden');
             }
+        });
+        
+        // Lida com o preloader
+        window.addEventListener('load', () => {
+            preloader.classList.add('hidden');
         });
 
         // ========== INICIALIZAÇÃO ==========
