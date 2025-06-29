@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doçuras MK - Catálogo</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FFF8F0; /* Um tom de creme suave */
+        }
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .cart-icon {
+            transition: transform 0.3s ease;
+        }
+        .cart-icon.active {
+            transform: scale(1.2);
+        }
+        /* Custom scrollbar for better aesthetics */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: #f7e9d7;
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #D5BFAF;
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #b99a86;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-4xl font-pacifico text-[#A0522D]">Doçuras MK</a>
+
+            <!-- Desktop Menu (visible on medium screens and up) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#category-trufas" class="text-lg text-gray-700 hover:text-[#A0522D] transition-colors">Trufas</a>
+                <a href="#category-cones-trufados" class="text-lg text-gray-700 hover:text-[#A0522D] transition-colors">Cones</a>
+                <a href="#category-outros-doces" class="text-lg text-gray-700 hover:text-[#A0522D] transition-colors">Outros Doces</a>
+            </nav>
+
+            <div class="flex items-center gap-5">
+                <!-- Cart Icon -->
+                <div class="relative">
+                    <button id="cart-button" class="relative text-2xl text-[#A0522D] hover:text-[#7c4021] transition-colors">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+                <!-- Mobile Menu Button (visible on small screens) -->
+                <button id="mobile-menu-button" class="md:hidden text-2xl text-[#A0522D]">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-t border-gray-200">
+            <a href="#category-trufas" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-[#FFF8F0] hover:text-[#A0522D]">Trufas</a>
+            <a href="#category-cones-trufados" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-[#FFF8F0] hover:text-[#A0522D]">Cones Trufados</a>
+            <a href="#category-outros-doces" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-[#FFF8F0] hover:text-[#A0522D]">Outros Doces</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-16 md:py-24 px-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(255, 248, 240, 0.8), rgba(255, 248, 240, 0.8)), url('https://placehold.co/1200x600/FFF8F0/A0522D?text=Del%C3%ADcias+Caseiras');">
+        <h2 class="text-5xl md:text-6xl font-pacifico text-[#A0522D] mb-4">Pequenos Momentos, Grandes Sabores</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Transforme seu dia com uma pausa para o que é bom de verdade. Nosso catálogo está repleto de doçuras que prometem criar memórias inesquecíveis. Qual vai ser a sua hoje?</p>
+    </section>
+
+    <!-- Products Section -->
+    <main class="container mx-auto px-6 py-12">
+        <div id="product-list" class="space-y-16">
+            <!-- Product categories and cards will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-11/12 md:w-2/3 lg:w-1/2 max-w-2xl transform transition-all duration-300 scale-95 opacity-0">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-5 border-b">
+                <h4 class="text-2xl font-bold text-[#A0522D]">Seu Pedido</h4>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            <!-- Modal Body -->
+            <div id="cart-items" class="p-5 modal-body max-h-[60vh] overflow-y-auto">
+                <!-- Cart items will be injected here -->
+            </div>
+            <!-- Modal Footer -->
+            <div class="p-5 border-t">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-semibold">Total:</span>
+                    <span id="cart-total" class="text-xl font-bold text-[#A0522D]">R$ 0,00</span>
+                </div>
+                 <div class="mb-4">
+                    <label for="client-name" class="block text-sm font-medium text-gray-700 mb-1">Seu Nome:</label>
+                    <input type="text" id="client-name" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#A0522D] focus:border-[#A0522D]" placeholder="Digite seu nome para o pedido">
+                </div>
+                <button id="whatsapp-checkout" class="w-full bg-[#25D366] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 text-lg hover:bg-[#1DA851] transition-all">
+                    <i class="fab fa-whatsapp"></i>
+                    Finalizar Pedido no WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Success/Error Toast Notification -->
+    <div id="toast" class="fixed top-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg opacity-0 transform translate-y-[-20px] transition-all duration-300">
+        <p id="toast-message"></p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white/50 mt-12 py-6 text-center">
+        <p class="text-gray-600">&copy; 2024 Doçuras MK. Todos os direitos reservados.</p>
+        <p class="text-sm text-gray-500">Feito com <i class="fas fa-heart text-red-500"></i> para adoçar seu dia.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // ========== CONFIGURAÇÃO INICIAL ==========
+        // IMPORTANTE: Insira seu número de WhatsApp com código do país e DDD
+        const whatsappNumber = "5511999998888"; 
+        
+        const products = [
+            // Trufas
+            { id: 1, name: "Trufa de Brigadeiro", price: 3.50, description: "O clássico que todo mundo ama, cremoso e intenso.", image: "https://placehold.co/400x400/6B4F4F/FFFFFF?text=Brigadeiro", category: "Trufas" },
+            { id: 2, name: "Trufa de Prestígio", price: 3.50, description: "Combinação perfeita de coco molhadinho e chocolate.", image: "https://placehold.co/400x400/D5BFAF/333?text=Prestígio", category: "Trufas" },
+            { id: 3, name: "Trufa de Maracujá", price: 3.50, description: "O azedinho refrescante da fruta com chocolate.", image: "https://placehold.co/400x400/FFC300/333?text=Maracujá", category: "Trufas" },
+            { id: 4, name: "Trufa de Morango", price: 3.50, description: "Sabor de fruta fresca com a doçura do chocolate.", image: "https://placehold.co/400x400/E74C3C/FFFFFF?text=Morango", category: "Trufas" },
+            { id: 5, name: "Trufa de Limão", price: 3.50, description: "Creme de limão siciliano, cítrico e delicioso.", image: "https://placehold.co/400x400/A2D94A/333?text=Limão", category: "Trufas" },
+            { id: 6, name: "Trufa de Laranja", price: 3.50, description: "Um toque cítrico e sofisticado de laranja.", image: "https://placehold.co/400x400/F39C12/FFFFFF?text=Laranja", category: "Trufas" },
+            { id: 7, name: "Trufa de Leite Ninho", price: 3.50, description: "Cremosa, suave e com gostinho de infância.", image: "https://placehold.co/400x400/FDF5E6/333?text=Ninho", category: "Trufas" },
+            { id: 8, name: "Trufa de Oreo", price: 4.00, description: "Pedaços crocantes de Oreo em um recheio cremoso.", image: "https://placehold.co/400x400/2C3E50/FFFFFF?text=Oreo", category: "Trufas" },
+            { id: 9, name: "Trufa de Oreo com Nutella", price: 4.50, description: "A combinação dos sonhos: Oreo e o creme de avelã.", image: "https://placehold.co/400x400/964B00/FFFFFF?text=Oreo+%26+Nutella", category: "Trufas" },
+            { id: 10, name: "Trufa de Cupuaçu", price: 4.00, description: "Sabor exótico e marcante da Amazônia.", image: "https://placehold.co/400x400/D0C07A/333?text=Cupuaçu", category: "Trufas" },
+            { id: 11, name: "Trufa de Bacuri", price: 4.00, description: "Um gosto único e cremoso, direto do Pará.", image: "https://placehold.co/400x400/F4E0B9/333?text=Bacuri", category: "Trufas" },
+            { id: 12, name: "Trufa de Açaí", price: 4.00, description: "A energia do açaí em uma trufa surpreendente.", image: "https://placehold.co/400x400/4B0082/FFFFFF?text=Açaí", category: "Trufas" },
+            { id: 13, name: "Trufa de Castanha do Pará", price: 4.00, description: "Crocante e saborosa, com o melhor da castanha.", image: "https://placehold.co/400x400/8B4513/FFFFFF?text=Castanha", category: "Trufas" },
+            { id: 14, name: "Trufa de Paçoca", price: 3.50, description: "O sabor inconfundível do amendoim em uma trufa.", image: "https://placehold.co/400x400/CD853F/FFFFFF?text=Paçoca", category: "Trufas" },
+            // Cones
+            { id: 15, name: "Cone de Brigadeiro", price: 7.00, description: "Casquinha crocante com o recheio mais amado.", image: "https://placehold.co/400x400/6B4F4F/FFFFFF?text=Cone+Brigadeiro", category: "Cones Trufados" },
+            { id: 16, name: "Cone de Prestígio", price: 7.00, description: "Muito coco e chocolate em uma casquinha crocante.", image: "https://placehold.co/400x400/D5BFAF/333?text=Cone+Prestígio", category: "Cones Trufados" },
+            { id: 17, name: "Cone de Maracujá", price: 7.00, description: "Refrescância e cremosidade em cada mordida.", image: "https://placehold.co/400x400/FFC300/333?text=Cone+Maracujá", category: "Cones Trufados" },
+            { id: 18, name: "Cone de Morango", price: 7.00, description: "O doce do morango na casquinha que você adora.", image: "https://placehold.co/400x400/E74C3C/FFFFFF?text=Cone+Morango", category: "Cones Trufados" },
+            { id: 19, name: "Cone de Limão", price: 7.00, description: "Mousse de limão dentro de uma casquinha crocante.", image: "https://placehold.co/400x400/A2D94A/333?text=Cone+Limão", category: "Cones Trufados" },
+            { id: 20, name: "Cone de Laranja", price: 7.00, description: "Sabor cítrico e surpreendente para o seu cone.", image: "https://placehold.co/400x400/F39C12/FFFFFF?text=Cone+Laranja", category: "Cones Trufados" },
+            { id: 21, name: "Cone de Leite Ninho", price: 7.00, description: "A cremosidade do leite ninho que derrete na boca.", image: "https://placehold.co/400x400/FDF5E6/333?text=Cone+Ninho", category: "Cones Trufados" },
+            { id: 22, name: "Cone de Oreo", price: 8.00, description: "Crocância por dentro e por fora com muito Oreo.", image: "https://placehold.co/400x400/2C3E50/FFFFFF?text=Cone+Oreo", category: "Cones Trufados" },
+            { id: 23, name: "Cone Oreo com Nutella", price: 9.00, description: "A perfeição em forma de cone: Oreo e Nutella juntos.", image: "https://placehold.co/400x400/964B00/FFFFFF?text=Cone+Oreo+Nutella", category: "Cones Trufados" },
+            { id: 24, name: "Cone de Castanha do Pará", price: 8.00, description: "Recheio cremoso com pedaços de castanha.", image: "https://placehold.co/400x400/8B4513/FFFFFF?text=Cone+Castanha", category: "Cones Trufados" },
+            { id: 25, name: "Cone de Paçoca", price: 7.00, description: "Creme de amendoim super cremoso na casquinha.", image: "https://placehold.co/400x400/CD853F/FFFFFF?text=Cone+Paçoca", category: "Cones Trufados" },
+            // Outros Doces
+            { id: 26, name: "Sequilhos (100g)", price: 5.00, description: "Derretem na boca! Perfeitos para acompanhar um café.", image: "https://placehold.co/400x400/F7E9D7/333?text=Sequilhos", category: "Outros Doces" },
+            { id: 27, name: "Pudim de Leite (fatia)", price: 8.00, description: "A receita clássica da vovó, com uma calda de caramelo perfeita.", image: "https://placehold.co/400x400/DAC0A3/333?text=Pudim", category: "Outros Doces" },
+            { id: 28, name: "Banoffee (fatia)", price: 12.00, description: "Combinação irresistível de banana, doce de leite e chantilly.", image: "https://placehold.co/400x400/C7B09A/333?text=Banoffee", category: "Outros Doces" },
+            { id: 29, name: "Pudim (inteiro - sob encomenda)", price: 50.00, description: "O pudim inteiro para celebrar com a família e amigos.", image: "https://placehold.co/400x400/E6A4B4/333?text=Pudim+Inteiro", category: "Outros Doces" },
+        ];
+
+        let cart = {};
+
+        // ========== ELEMENTOS DO DOM ==========
+        const productList = document.getElementById('product-list');
+        const cartButton = document.getElementById('cart-button');
+        const cartModal = document.getElementById('cart-modal');
+        const closeModal = document.getElementById('close-modal');
+        const cartCount = document.getElementById('cart-count');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalEl = document.getElementById('cart-total');
+        const whatsappCheckoutBtn = document.getElementById('whatsapp-checkout');
+        const clientNameInput = document.getElementById('client-name');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // ========== FUNÇÕES ==========
+        
+        function showToast(message, isError = false) {
+            toastMessage.textContent = message;
+            toast.className = toast.className.replace(/bg-\w+-\d+/, isError ? 'bg-red-500' : 'bg-green-500');
+            toast.classList.remove('opacity-0', 'translate-y-[-20px]');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-[-20px]');
+            }, 3000);
+        }
+        
+        function renderProducts() {
+            productList.innerHTML = '';
+            const categories = {};
+
+            products.forEach(product => {
+                if (!categories[product.category]) {
+                    categories[product.category] = [];
+                }
+                categories[product.category].push(product);
+            });
+
+            const orderedCategories = ['Trufas', 'Cones Trufados', 'Outros Doces'];
+
+            orderedCategories.forEach(categoryName => {
+                if (!categories[categoryName]) return;
+
+                const categorySection = document.createElement('section');
+                // Cria um ID válido para a seção a partir do nome da categoria
+                const categoryId = `category-${categoryName.toLowerCase().replace(/ /g, '-')}`;
+                categorySection.id = categoryId;
+                
+                let productCardsHTML = '';
+                categories[categoryName].forEach(product => {
+                    productCardsHTML += `
+                        <div class="bg-white rounded-lg overflow-hidden card-shadow transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-56 object-cover">
+                            <div class="p-5 flex flex-col flex-grow">
+                                <h4 class="text-xl font-bold text-gray-800">${product.name}</h4>
+                                <p class="text-gray-600 mt-2 flex-grow">${product.description}</p>
+                                <div class="flex justify-between items-center mt-4">
+                                    <span class="text-2xl font-bold text-[#A0522D]">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+                                    <button data-id="${product.id}" class="add-to-cart-btn bg-[#A0522D] text-white py-2 px-4 rounded-lg hover:bg-[#7c4021] transition-colors font-semibold">
+                                        Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                categorySection.innerHTML = `
+                    <h3 class="text-3xl font-bold text-left text-[#A0522D] mb-8">${categoryName}</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        ${productCardsHTML}
+                    </div>
+                `;
+                productList.appendChild(categorySection);
+            });
+        }
+
+        function addToCart(productId) {
+            if (cart[productId]) {
+                cart[productId].quantity++;
+            } else {
+                const product = products.find(p => p.id == productId);
+                cart[productId] = { ...product, quantity: 1 };
+            }
+            updateCart();
+            showToast(`${cart[productId].name} adicionado ao carrinho!`);
+            const cartIcon = cartButton.querySelector('i');
+            cartIcon.classList.add('active');
+            setTimeout(() => cartIcon.classList.remove('active'), 300);
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            if (cart[productId]) {
+                cart[productId].quantity = newQuantity;
+                if (cart[productId].quantity <= 0) {
+                    delete cart[productId];
+                }
+                updateCart();
+            }
+        }
+        
+        function updateCart() {
+            renderCartItems();
+            updateCartCount();
+            updateCartTotal();
+        }
+
+        function renderCartItems() {
+            cartItemsContainer.innerHTML = '';
+            if (Object.keys(cart).length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center text-gray-500">Seu carrinho está vazio.</p>';
+                return;
+            }
+            for (const id in cart) {
+                const item = cart[id];
+                const itemEl = `
+                    <div class="flex justify-between items-center py-3 border-b last:border-b-0">
+                        <div>
+                            <p class="font-semibold">${item.name}</p>
+                            <p class="text-sm text-gray-600">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center border rounded">
+                                <button data-id="${item.id}" class="quantity-change-btn w-8 h-8 text-lg font-bold">-</button>
+                                <span class="w-10 text-center">${item.quantity}</span>
+                                <button data-id="${item.id}" class="quantity-change-btn w-8 h-8 text-lg font-bold">+</button>
+                            </div>
+                            <span class="font-bold w-20 text-right">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</span>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.innerHTML += itemEl;
+            }
+        }
+
+        function updateCartCount() {
+            const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function updateCartTotal() {
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function openCartModal() {
+            cartModal.classList.remove('hidden');
+            setTimeout(() => {
+                cartModal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        }
+
+        function closeCartModal() {
+            cartModal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                cartModal.classList.add('hidden');
+            }, 300);
+        }
+
+        function checkoutToWhatsApp() {
+            const clientName = clientNameInput.value.trim();
+            if(Object.keys(cart).length === 0) {
+                 showToast('Seu carrinho está vazio!', true);
+                return;
+            }
+            if(!clientName) {
+                showToast('Por favor, digite seu nome.', true);
+                clientNameInput.focus();
+                return;
+            }
+
+            let message = `Olá, Doçuras MK! 👋\n\nMeu nome é *${clientName}* e gostaria de fazer o seguinte pedido:\n\n`;
+            let total = 0;
+
+            for (const id in cart) {
+                const item = cart[id];
+                const itemTotal = item.price * item.quantity;
+                message += `*${item.quantity}x* - ${item.name} (${item.category}) - R$ ${itemTotal.toFixed(2).replace('.', ',')}\n`;
+                total += itemTotal;
+            }
+
+            message += `\n*Total do Pedido: R$ ${total.toFixed(2).replace('.', ',')}*`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+
+        // ========== EVENT LISTENERS ==========
+        
+        // Controla a exibição do menu mobile
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fecha o menu mobile ao clicar em um link
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.classList.contains('mobile-menu-link')) {
+                 mobileMenu.classList.add('hidden');
+            }
+        });
+
+        productList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart-btn')) {
+                const id = e.target.dataset.id;
+                addToCart(id);
+            }
+        });
+        
+        cartItemsContainer.addEventListener('click', (e) => {
+            if(e.target.classList.contains('quantity-change-btn')) {
+                const id = e.target.dataset.id;
+                const change = e.target.textContent === '+' ? 1 : -1;
+                updateQuantity(id, cart[id].quantity + change);
+            }
+        });
+
+        cartButton.addEventListener('click', openCartModal);
+        closeModal.addEventListener('click', closeCartModal);
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                closeCartModal();
+            }
+        });
+
+        whatsappCheckoutBtn.addEventListener('click', checkoutToWhatsApp);
+
+        // ========== INICIALIZAÇÃO ==========
+        renderProducts();
+    });
+    </script>
+</body>
+</html>
