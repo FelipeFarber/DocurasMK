@@ -23,13 +23,13 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #FFF8F0; /* Um tom de creme suave */
+            background-color: #FEF6F9; /* Rosa bem clarinho */
         }
         .font-pacifico {
             font-family: 'Pacifico', cursive;
         }
         .card-shadow {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
         }
         .cart-icon {
             transition: transform 0.3s ease;
@@ -37,62 +37,62 @@
         .cart-icon.active {
             transform: scale(1.2);
         }
-        /* Custom scrollbar for better aesthetics */
+        /* Custom scrollbar matching the new theme */
         .modal-body::-webkit-scrollbar {
             width: 8px;
         }
         .modal-body::-webkit-scrollbar-track {
-            background: #f7e9d7;
+            background: #FCE7F3; /* Rosa claro */
             border-radius: 10px;
         }
         .modal-body::-webkit-scrollbar-thumb {
-            background: #D5BFAF;
+            background: #F9A8D4; /* Rosa médio */
             border-radius: 10px;
         }
         .modal-body::-webkit-scrollbar-thumb:hover {
-            background: #b99a86;
+            background: #F472B6; /* Rosa mais forte */
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-700">
 
     <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-md">
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-4xl font-pacifico text-[#A0522D]">Doçuras MK</a>
+            <a href="#" class="text-4xl font-pacifico text-pink-500">Doçuras MK</a>
 
             <!-- Desktop Menu (visible on medium screens and up) -->
             <nav class="hidden md:flex space-x-8">
-                <a href="#category-trufas" class="text-lg text-gray-700 hover:text-[#A0522D] transition-colors">Trufas</a>
-                <a href="#category-cones-trufados" class="text-lg text-gray-700 hover:text-[#A0522D] transition-colors">Cones</a>
-                <a href="#category-outros-doces" class="text-lg text-gray-700 hover:text-[#A0522D] transition-colors">Outros Doces</a>
+                <a href="#category-trufas" class="text-lg text-gray-600 hover:text-pink-500 transition-colors">Trufas</a>
+                <a href="#category-cones-trufados" class="text-lg text-gray-600 hover:text-pink-500 transition-colors">Cones</a>
+                <a href="#category-outros-doces" class="text-lg text-gray-600 hover:text-pink-500 transition-colors">Outros Doces</a>
             </nav>
 
             <div class="flex items-center gap-5">
                 <!-- Cart Icon -->
                 <div class="relative">
-                    <button id="cart-button" class="relative text-2xl text-[#A0522D] hover:text-[#7c4021] transition-colors">
+                    <button id="cart-button" class="relative text-2xl text-pink-500 hover:text-pink-600 transition-colors">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="cart-count" class="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
                     </button>
                 </div>
                 <!-- Mobile Menu Button (visible on small screens) -->
-                <button id="mobile-menu-button" class="md:hidden text-2xl text-[#A0522D]">
+                <button id="mobile-menu-button" class="md:hidden text-2xl text-pink-500">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
         <!-- Mobile Menu (hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-t border-gray-200">
-            <a href="#category-trufas" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-[#FFF8F0] hover:text-[#A0522D]">Trufas</a>
-            <a href="#category-cones-trufados" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-[#FFF8F0] hover:text-[#A0522D]">Cones Trufados</a>
-            <a href="#category-outros-doces" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-[#FFF8F0] hover:text-[#A0522D]">Outros Doces</a>
+            <a href="#category-trufas" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-pink-50 hover:text-pink-500">Trufas</a>
+            <a href="#category-cones-trufados" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-pink-50 hover:text-pink-500">Cones Trufados</a>
+            <a href="#category-outros-doces" class="mobile-menu-link block text-center py-3 px-6 text-gray-700 hover:bg-pink-50 hover:text-pink-500">Outros Doces</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="text-center py-16 md:py-24 px-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(255, 248, 240, 0.8), rgba(255, 248, 240, 0.8)), url('https://placehold.co/1200x600/FFF8F0/A0522D?text=Del%C3%ADcias+Caseiras');">
-        <h2 class="text-5xl md:text-6xl font-pacifico text-[#A0522D] mb-4">Pequenos Momentos, Grandes Sabores</h2>
+    <section class="text-center py-16 md:py-24 px-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(254, 246, 249, 0.9), rgba(254, 246, 249, 0.9)), url('https://placehold.co/1200x600/FEF6F9/db2777?text=Del%C3%ADcias+Caseiras');">
+        <h2 class="text-5xl md:text-6xl font-pacifico text-pink-500 mb-4">Pequenos Momentos, Grandes Sabores</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">Transforme seu dia com uma pausa para o que é bom de verdade. Nosso catálogo está repleto de doçuras que prometem criar memórias inesquecíveis. Qual vai ser a sua hoje?</p>
     </section>
 
@@ -108,7 +108,7 @@
         <div class="bg-white rounded-lg shadow-xl w-11/12 md:w-2/3 lg:w-1/2 max-w-2xl transform transition-all duration-300 scale-95 opacity-0">
             <!-- Modal Header -->
             <div class="flex justify-between items-center p-5 border-b">
-                <h4 class="text-2xl font-bold text-[#A0522D]">Seu Pedido</h4>
+                <h4 class="text-2xl font-bold text-pink-500">Seu Pedido</h4>
                 <button id="close-modal" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
             </div>
             <!-- Modal Body -->
@@ -119,11 +119,11 @@
             <div class="p-5 border-t">
                 <div class="flex justify-between items-center mb-4">
                     <span class="text-lg font-semibold">Total:</span>
-                    <span id="cart-total" class="text-xl font-bold text-[#A0522D]">R$ 0,00</span>
+                    <span id="cart-total" class="text-xl font-bold text-emerald-600">R$ 0,00</span>
                 </div>
                  <div class="mb-4">
                     <label for="client-name" class="block text-sm font-medium text-gray-700 mb-1">Seu Nome:</label>
-                    <input type="text" id="client-name" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#A0522D] focus:border-[#A0522D]" placeholder="Digite seu nome para o pedido">
+                    <input type="text" id="client-name" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-400 focus:border-pink-400" placeholder="Digite seu nome para o pedido">
                 </div>
                 <button id="whatsapp-checkout" class="w-full bg-[#25D366] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 text-lg hover:bg-[#1DA851] transition-all">
                     <i class="fab fa-whatsapp"></i>
@@ -141,7 +141,7 @@
     <!-- Footer -->
     <footer class="bg-white/50 mt-12 py-6 text-center">
         <p class="text-gray-600">&copy; 2024 Doçuras MK. Todos os direitos reservados.</p>
-        <p class="text-sm text-gray-500">Feito com <i class="fas fa-heart text-red-500"></i> para adoçar seu dia.</p>
+        <p class="text-sm text-gray-500">Feito com <i class="fas fa-heart text-pink-500"></i> para adoçar seu dia.</p>
     </footer>
 
     <script>
@@ -233,7 +233,6 @@
                 if (!categories[categoryName]) return;
 
                 const categorySection = document.createElement('section');
-                // Cria um ID válido para a seção a partir do nome da categoria
                 const categoryId = `category-${categoryName.toLowerCase().replace(/ /g, '-')}`;
                 categorySection.id = categoryId;
                 
@@ -246,8 +245,8 @@
                                 <h4 class="text-xl font-bold text-gray-800">${product.name}</h4>
                                 <p class="text-gray-600 mt-2 flex-grow">${product.description}</p>
                                 <div class="flex justify-between items-center mt-4">
-                                    <span class="text-2xl font-bold text-[#A0522D]">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
-                                    <button data-id="${product.id}" class="add-to-cart-btn bg-[#A0522D] text-white py-2 px-4 rounded-lg hover:bg-[#7c4021] transition-colors font-semibold">
+                                    <span class="text-2xl font-bold text-emerald-600">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+                                    <button data-id="${product.id}" class="add-to-cart-btn bg-emerald-500 text-white py-2 px-4 rounded-lg hover:bg-emerald-600 transition-colors font-semibold">
                                         Adicionar
                                     </button>
                                 </div>
@@ -257,7 +256,7 @@
                 });
 
                 categorySection.innerHTML = `
-                    <h3 class="text-3xl font-bold text-left text-[#A0522D] mb-8">${categoryName}</h3>
+                    <h3 class="text-3xl font-bold text-left text-pink-500 mb-8">${categoryName}</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         ${productCardsHTML}
                     </div>
@@ -312,9 +311,9 @@
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="flex items-center border rounded">
-                                <button data-id="${item.id}" class="quantity-change-btn w-8 h-8 text-lg font-bold">-</button>
+                                <button data-id="${item.id}" class="quantity-change-btn w-8 h-8 text-lg font-bold text-gray-600 hover:bg-gray-100">-</button>
                                 <span class="w-10 text-center">${item.quantity}</span>
-                                <button data-id="${item.id}" class="quantity-change-btn w-8 h-8 text-lg font-bold">+</button>
+                                <button data-id="${item.id}" class="quantity-change-btn w-8 h-8 text-lg font-bold text-gray-600 hover:bg-gray-100">+</button>
                             </div>
                             <span class="font-bold w-20 text-right">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</span>
                         </div>
@@ -381,12 +380,10 @@
 
         // ========== EVENT LISTENERS ==========
         
-        // Controla a exibição do menu mobile
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Fecha o menu mobile ao clicar em um link
         mobileMenu.addEventListener('click', (e) => {
             if (e.target.classList.contains('mobile-menu-link')) {
                  mobileMenu.classList.add('hidden');
